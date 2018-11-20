@@ -33,5 +33,4 @@ local.properties
 # Log Files
 *.log
 
-#url File
-*/Url.java
+
