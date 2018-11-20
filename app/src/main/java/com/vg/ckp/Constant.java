@@ -2,7 +2,7 @@ package com.vg.ckp;
 
 public interface Constant {
 
-    String base_url = "";
+    String base_url = "xxxx";
 
     String name = "1";
     String passsword = "12315284512";
