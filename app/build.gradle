@@ -28,6 +28,15 @@ android {
         }
     }
 
+    //为了解决部分第三方库重复打包了META-INF的问题
+    packagingOptions{
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -55,4 +64,20 @@ dependencies {
     implementation project(':XRecyclerView')
 
     implementation 'com.github.bumptech.glide:glide:3.5.2'
+
+
+    // LeanCloud 基础包
+    implementation ('cn.leancloud.android:avoscloud-sdk:4.7.8')
+
+    // 推送与即时通讯需要的包
+    implementation ('cn.leancloud.android:avoscloud-push:4.7.8@aar'){transitive = true}
+
+    // Android 混合推送需要的包
+//    implementation ('cn.leancloud.android:avoscloud-mixpush:4.7.8@aar'){transitive = true}
+
+    // LeanCloud 用户反馈包
+    implementation ('cn.leancloud.android:avoscloud-feedback:4.7.8@aar')
+
+    // LeanCloud 应用内搜索包
+    implementation ('cn.leancloud.android:avoscloud-search:4.7.8@aar')
 }

@@ -1,13 +1,20 @@
 package com.vg.ckp;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.vg.ckp.View.BottomBar;
 import com.vg.ckp.mvp.base.BaseActivity;
 import com.vg.ckp.mvp.base.IPresenter;
-import com.vg.ckp.mvp.login.LoginActivity;
 import com.vg.ckp.mvp.login.LoginView;
 import com.vg.ckp.mvp.tab.findnew.FindNewFragment;
 import com.vg.ckp.mvp.tab.yunbo.YunboFragment;
 import com.vg.ckp.mvp.tab.zhibo.ZhiboFragment;
+import com.vg.ckp.utils.MobileInfoUtil;
+
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity implements LoginView {
@@ -46,8 +53,36 @@ public class MainActivity extends BaseActivity implements LoginView {
     protected void initEvent() {
 //        ((LoginPresenter)mPresenter).detachView();//断开
 //        mPresenter = null;//测试用
-        startActivity(LoginActivity.class);
+        //获取imei号生成用户唯一信息
+        final String imei = MobileInfoUtil.getIMEI(this);
+        if (null != imei) {
+            //查询imei号是否存在，不存在新增一个用户
+            AVQuery<AVObject> avQuery = new AVQuery<>(Constant.TABLE_USER_INFO);
+            avQuery.whereEqualTo(Constant.TABLE_USER_INFO_ITEM_IMEI, imei);
+            avQuery.findInBackground(new FindCallback<AVObject>() {
+                @Override
+                public void done (List<AVObject> avObjects, AVException avException) {
+                    if (null == avObjects || avObjects.isEmpty()) {
+                        AVObject todo = new AVObject(Constant.TABLE_USER_INFO);
+                        todo.put("imei", imei);
+                        todo.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done (AVException e) {
+                                if (null == e) {
+                                    //生成账号成功
+                                    
+                                }
+                            }
+                        });
+                    } else {
+                    
+                    }
+                }
+            });
+        }
     }
+    
+    
 
     @Override
     protected int getContentView() {
