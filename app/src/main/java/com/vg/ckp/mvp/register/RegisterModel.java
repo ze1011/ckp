@@ -40,10 +40,10 @@ public class RegisterModel extends BaseModel {
         }
 
 
-        if (!VerifyUtils.isMobileNumber(args[0])) {
-            listener.onComplete(null, "请输入正确的电话号码");
-            return;
-        }
+        //if (!VerifyUtils.isMobileNumber(args[0])) {
+          //  listener.onComplete(null, "请输入正确的电话号码");
+            //return;
+        //}
 
         if (!args[2].equals(args[3])) {
             listener.onComplete(null, "二次输入密码不一样");

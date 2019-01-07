@@ -116,10 +116,10 @@ public class LoginModel extends BaseModel {
         String user = username.getText().toString().trim();
         String pwd = password.getText().toString().trim();
 
-        if (!VerifyUtils.isMobileNumber(user)) {
-            listener.onComplete(null,"请输入正确的手机号码......");
-            return null;
-        }
+        //if (!VerifyUtils.isMobileNumber(user)) {
+          //  listener.onComplete(null,"请输入正确的手机号码......");
+            //return null;
+        //}
         if (pwd == null || pwd.length() == 0) {
 
             listener.onComplete(null,"密码不能为空");

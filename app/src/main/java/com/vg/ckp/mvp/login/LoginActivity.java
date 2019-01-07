@@ -1,6 +1,5 @@
 package com.vg.ckp.mvp.login;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -45,6 +44,10 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         mRetureImg = findViewById(R.id.image_return);
         mUsername.setText("13422223333");
         mPassword.setText("123");
+    
+    
+        
+    
     }
 
 
@@ -105,8 +108,8 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                 finish();
                 break;
             case R.id.login:
-                Log.d(TAG, "onClick: login");
-                ((LoginPresenter) mPresenter).loadLogin(mUsername,mPassword);
+                //Log.d(TAG, "onClick: login");
+                //((LoginPresenter) mPresenter).loadLogin(mUsername,mPassword);
                 break;
             case R.id.register:
                 startActivity(RegisterActivity.class);
